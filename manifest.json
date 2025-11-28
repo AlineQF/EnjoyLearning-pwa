@@ -1,0 +1,22 @@
+{
+    "name": "EnjoyLearning PWA - Alfabetização",
+    "short_name": "EnjoyLearning",
+    "description": "PWA de alfabetização gamificada (ODS 4): lições curtas e modo offline.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "theme_color": "#FFC107",
+    "background_color": "#E0F7FA",
+    "icons": [
+        {
+            "src": "/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

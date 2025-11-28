@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Aprender Brincando - EnjoyLearning PWA</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FFC107">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap');
+        body {
+            font-family: 'Baloo 2', cursive;
+            background-color: #E0F7FA;
+        }
+        .header-bg {
+             background-color: #64B5F6;
+             border-bottom: 5px solid #1E88E5;
+        }
+        .activity-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+        .activity-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: #FFD740;
+        }
+        .btn-bubble {
+            box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.1s;
+        }
+        .btn-bubble:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+        .score-display {
+            background-color: #FFEB3B;
+            color: #D32F2F;
+            border: 3px solid #FF9800;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+        .hidden-page {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <div id="app-container" class="max-w-4xl mx-auto">
+        
+        <header class="header-bg shadow-lg p-4 sticky top-0 z-10">
+            <div class="flex items-center justify-between">
+                
+                <button onclick="showPage('dashboard')" class="text-white bg-blue-500 hover:bg-blue-600 btn-bubble p-2 rounded-xl transition duration-150 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+
+                <h1 class="text-3xl font-extrabold text-white tracking-wider uppercase text-center drop-shadow-md">
+                    ENJOY LEARNING!
+                </h1>
+
+                <div class="score-display flex items-center space-x-2 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#FFC107" stroke="#FFC107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M10 13l4 4 4-4m-4-10v17M4 14.5a.5.5 0 010-1.5 5 5 0 0110 0 .5.5 0 010 1.5 5 5 0 01-10 0zM17 14.5a.5.5 0 010-1.5 5 5 0 0110 0 .5.5 0 010 1.5 5 5 0 01-10 0z"></path></svg>
+                    <span id="score" class="font-extrabold">0</span>
+                </div>
+
+            </div>
+        </header>
+
+        <section id="dashboard" class="page">
+            <main class="p-4 sm:p-6 space-y-8">
+                
+                <section class="bg-white p-6 rounded-2xl shadow-xl border-b-8 border-yellow-400">
+                    <h2 class="text-3xl font-extrabold text-blue-800 mb-2">👋 Olá, Campeão(ã)!</h2>
+                    <p class="text-gray-700 mb-4 font-semibold text-lg">
+                        Estamos prontos para a diversão! Escolha uma atividade abaixo.
+                    </p>
+                    <div id="offline-status" class="flex items-center text-sm text-green-600 font-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-2"><path d="M12 2v20M17 5H7M17 19H7"></path></svg>
+                        <span>Status: Conectado(a) e seguro(a)!</span>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-extrabold text-blue-800 border-b-4 border-yellow-400 pb-2 mb-6">
+                        🏆 Nossas Missões Especiais
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <div class="activity-card bg-white shadow-2xl border-l-8 border-green-500">
+                            <div class="p-6">
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <span class="p-3 rounded-full bg-green-500 shadow-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                                    </span>
+                                    <h4 class="text-2xl font-bold text-gray-800">1. O Baile das Sílabas! 🎤</h4>
+                                </div>
+                                <p class="text-md text-gray-600 mb-4 font-normal">Aprenda a juntar as letrinhas para formar palavras fáceis e divertidas!</p>
+                            </div>
+                            <button onclick="showPage('silabas')" class="w-full bg-green-500 text-white text-xl font-bold py-3 btn-bubble hover:bg-green-600">
+                                Começar! 🎉
+                            </button>
+                        </div>
+                        
+                        <div class="activity-card bg-white shadow-2xl border-l-8 border-red-500">
+                            <div class="p-6">
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <span class="p-3 rounded-full bg-red-500 shadow-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white"><path d="M2 3h6a4 4 0 014 4v14H4a2 2 0 01-2-2zM22 3h-6a4 4 0 00-4 4v14h12a2 2 0 002-2z"></path></svg>
+                                    </span>
+                                    <h4 class="text-2xl font-bold text-gray-800">2. Mágica das Palavras! ✨</h4>
+                                </div>
+                                <p class="text-md text-gray-600 mb-4 font-normal">Vamos ler, escrever e entender histórias incríveis!</p>
+                            </div>
+                            <button onclick="showPage('palavras')" class="w-full bg-red-500 text-white text-xl font-bold py-3 btn-bubble hover:bg-red-600">
+                                Aventura! 🚀
+                            </button>
+                        </div>
+
+                        <div class="activity-card bg-white shadow-2xl border-l-8 border-yellow-500">
+                             <div class="p-6">
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <span class="p-3 rounded-full bg-yellow-500 shadow-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="16" y2="14"></line><line x1="8" y1="18" x2="16" y2="18"></line></svg>
+                                </span>
+                                <h4 class="text-2xl font-bold text-gray-800">3. A Caça aos Números! 🔢</h4>
+                                </div>
+                                <p class="text-md text-gray-600 mb-4 font-normal">Contas fáceis, somas e subtrações para deixar a mente afiada!</p>
+                            </div>
+                            <button onclick="simulateActivity(40)" class="w-full bg-yellow-500 text-white text-xl font-bold py-3 btn-bubble hover:bg-yellow-600">
+                                Vamos Contar! ➕
+                            </button>
+                        </div>
+
+                        <div class="activity-card bg-white shadow-2xl border-l-8 border-purple-500">
+                            <div class="p-6">
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <span class="p-3 rounded-full bg-purple-500 shadow-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-white"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                    </span>
+                                    <h4 class="text-2xl font-bold text-gray-800">4. Meu Caminho de Estudo! 🗺️</h4>
+                                </div>
+                                <p class="text-md text-gray-600 mb-4 font-normal">Veja seus troféus e escolha a próxima fase da sua aventura!</p>
+                            </div>
+                            <button onclick="simulateActivity(25)" class="w-full bg-purple-500 text-white text-xl font-bold py-3 btn-bubble hover:bg-purple-600">
+                                Meu Progresso! 👍
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
+            </main>
+            <footer class="text-center p-4 text-gray-500 text-sm mt-8 border-t border-gray-300">
+                <p>&copy; 2025 EnjoyLearning PWA. Projeto de ODS 4 - Educação de Qualidade.</p>
+            </footer>
+        </section>
+        
+        <section id="silabas" class="page hidden-page">
+            <main class="p-6 sm:p-8 space-y-6">
+                <div class="text-center bg-green-100 p-8 rounded-2xl border-b-8 border-green-600">
+                    <h2 class="text-4xl font-extrabold text-green-700 mb-2">O Baile das Sílabas! 🎶</h2>
+                    <p class="text-xl text-green-800">Encontre as sílabas que faltam e ganhe pontos!</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Fase 1: Forme a Palavra "CASA"</h3>
+                    <div class="flex items-center justify-center space-x-4 mb-6">
+                        <div class="text-4xl p-4 bg-yellow-200 rounded-lg border-2 border-yellow-500">**CA**</div>
+                        <div class="text-4xl p-4 bg-gray-200 rounded-lg border-2 border-dashed border-gray-500 cursor-pointer">?</div>
+                        <div class="text-xl text-green-700 font-bold">= CASA</div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <button onclick="alertMessage('Tente outra sílaba! 😔');" class="bg-red-400 text-white text-xl font-bold py-4 rounded-xl btn-bubble hover:bg-red-500">MA</button>
+                        <button onclick="simulateActivityCompletion('silabas', 50);" class="bg-green-500 text-white text-xl font-bold py-4 rounded-xl btn-bubble hover:bg-green-600">SA</button>
+                        <button onclick="alertMessage('Quase lá! Tente o SA.');" class="bg-blue-400 text-white text-xl font-bold py-4 rounded-xl btn-bubble hover:bg-blue-500">TA</button>
+                    </div>
+                </div>
+
+                <button onclick="showPage('dashboard')" class="w-full bg-gray-400 text-white text-lg font-bold py-3 rounded-xl btn-bubble hover:bg-gray-500 mt-6">
+                    < Voltar para o Menu
+                </button>
+            </main>
+        </section>
+
+        <section id="palavras" class="page hidden-page">
+            <main class="p-6 sm:p-8 space-y-6">
+                <div class="text-center bg-red-100 p-8 rounded-2xl border-b-8 border-red-600">
+                    <h2 class="text-4xl font-extrabold text-red-700 mb-2">Mágica das Palavras! 📖</h2>
+                    <p class="text-xl text-red-800">Leia a frase e descubra qual palavra está faltando!</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Lição 1: O Cachorro</h3>
+                    <p class="text-2xl text-gray-700 mb-6">O cachorro late para a _______.</p>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <button onclick="alertMessage('Essa palavra não combina! 🐶');" class="bg-blue-400 text-white text-xl font-bold py-4 rounded-xl btn-bubble hover:bg-blue-500">CARRO</button>
+                        <button onclick="simulateActivityCompletion('palavras', 35);" class="bg-red-500 text-white text-xl font-bold py-4 rounded-xl btn-bubble hover:bg-red-600">LUA</button>
+                        <button onclick="alertMessage('Pode ser, mas tente uma resposta mais comum!');" class="bg-green-400 text-white text-xl font-bold py-4 rounded-xl btn-bubble hover:bg-green-500">BOLA</button>
+                    </div>
+                </div>
+                
+                <button onclick="showPage('dashboard')" class="w-full bg-gray-400 text-white text-lg font-bold py-3 rounded-xl btn-bubble hover:bg-gray-500 mt-6">
+                    < Voltar para o Menu
+                </button>
+            </main>
+        </section>
+
+        <footer class="text-center p-4 text-gray-500 text-sm mt-8 border-t border-gray-300">
+            <p>&copy; 2025 EnjoyLearning PWA. Projeto de ODS 4 - Educação de Qualidade.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const SCORE_KEY = 'enjoylearning_score';
+
+        function loadScore() {
+            const score = parseInt(localStorage.getItem(SCORE_KEY) || '0', 10);
+            document.getElementById('score').textContent = score;
+            return score;
+        }
+
+        function addScore(points) {
+            let currentScore = loadScore();
+            currentScore += points;
+            localStorage.setItem(SCORE_KEY, currentScore);
+            document.getElementById('score').textContent = currentScore;
+            alertMessage(`Você ganhou ${points} pontos! 🌟 Total: ${currentScore}`);
+        }
+
+        function simulateActivity(points) {
+            setTimeout(() => {
+                addScore(points);
+            }, 500);
+        }
+
+        function simulateActivityCompletion(activityId, points) {
+             addScore(points);
+             alertMessage(`Parabéns! Fase concluída: +${points} pontos!`);
+             setTimeout(() => {
+                 showPage('dashboard');
+             }, 1500);
+        }
+
+
+        const pages = ['dashboard', 'silabas', 'palavras'];
+        let currentPage = 'dashboard';
+
+        function showPage(pageId) {
+            pages.forEach(id => {
+                const pageElement = document.getElementById(id);
+                if (pageElement) {
+                    if (id === pageId) {
+                        pageElement.classList.remove('hidden-page');
+                        currentPage = pageId;
+                    } else {
+                        pageElement.classList.add('hidden-page');
+                    }
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        function alertMessage(message) {
+            const container = document.getElementById('app-container');
+            
+            document.querySelectorAll('.feedback-message').forEach(el => el.remove());
+            
+            const messageEl = document.createElement('div');
+            messageEl.className = 'feedback-message fixed top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-2xl font-bold text-lg z-50 animate-bounce';
+            messageEl.style.animation = 'bounce 0.8s ease-in-out';
+            messageEl.textContent = message;
+            
+            container.appendChild(messageEl);
+
+            setTimeout(() => {
+                messageEl.remove();
+            }, 3000);
+        }
+
+        function updateStatus() {
+            const statusDiv = document.getElementById('offline-status');
+            if (navigator.onLine) {
+                statusDiv.innerHTML = '<span>Status: Conectado(a) e pronto para brincar! 🎉</span>';
+                statusDiv.classList.remove('text-red-600');
+                statusDiv.classList.add('text-green-600');
+            } else {
+                statusDiv.innerHTML = '<span>Status: OFFLINE. Nenhuma internet, mas podemos continuar! 🤫</span>';
+                statusDiv.classList.remove('text-green-600');
+                statusDiv.classList.add('text-red-600');
+            }
+        }
+        
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                .then(registration => {
+                    console.log('SW registrado com sucesso. Scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.error('Falha no registro do SW:', error);
+                });
+            });
+        } else {
+             console.warn('Service Workers não suportados neste navegador.');
+        }
+        
+        window.onload = function() {
+            loadScore();
+            updateStatus();
+
+            window.addEventListener('online', updateStatus);
+            window.addEventListener('offline', updateStatus);
+            
+            showPage('dashboard');
+        }
+    </script>
+</body>
+</html>
