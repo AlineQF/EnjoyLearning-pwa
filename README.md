@@ -77,3 +77,17 @@ Para rodar e testar a funcionalidade offline:
    ```bash
    git clone [https://github.com/AlineQF/EnjoyLearning-pwa.git](https://github.com/AlineQF/EnjoyLearning-pwa.git)
    cd EnjoyLearning-PWA
+
+
+
+## 6. Evidências Visuais
+<img width="1285" height="708" alt="image" src="https://github.com/user-attachments/assets/fa95b5db-434f-4adc-89d0-43d0da0989a9" />
+
+<img width="1285" height="708" alt="image" src="https://github.com/user-attachments/assets/a772054d-87d9-4ce1-9db4-104a601dfb53" />
+
+<img width="1285" height="708" alt="image" src="https://github.com/user-attachments/assets/c368f936-24fd-4c4b-8783-58d24343bf2b" />
+
+<img width="1285" height="708" alt="image" src="https://github.com/user-attachments/assets/3d5b6a35-505d-4ff2-9e35-ed2ef8d83635" />
+
+
+
